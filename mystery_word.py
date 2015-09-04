@@ -4,8 +4,12 @@ def easy_words(word_list):
     Returns a filtered version of the word list with words only containing
     4-6 characters.
     """
-    # TODO
-    pass
+    easy_words = []
+    for word in words:
+        if len(word) >= 4 and len(word) <=6:
+            easy_words.append(word)
+    return easy_words
+
 
 
 def medium_words(word_list):
@@ -14,7 +18,11 @@ def medium_words(word_list):
     6-8 characters.
     """
     # TODO
-    pass
+    medium_words = []
+    for word in words:
+        if len(word) >= 6 and len(word) <=8:
+            medium_words.append(word)
+    return medium_words
 
 
 def hard_words(word_list):
@@ -23,7 +31,11 @@ def hard_words(word_list):
     8+ characters.
     """
     # TODO
-    pass
+    hard_words = []
+    for word in words:
+        if len(word) >=8:
+            hard_words.append(word)
+    return hard_words
 
 
 def random_word(word_list):
@@ -73,6 +85,8 @@ def main():
     5. Giving the user the option to play again
     """
     # TODO
+    with open ('/usr/share/dict/words') as g:
+        words = g.read()
 
 
 if __name__ == '__main__':
