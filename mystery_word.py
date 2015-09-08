@@ -1,3 +1,6 @@
+import random
+import re
+
 
 def easy_words(word_list):
     """
@@ -5,9 +8,10 @@ def easy_words(word_list):
     4-6 characters.
     """
     easy_words = []
-    for word in words:
-        if len(word) >= 4 and len(word) <=6:
+    for word in word_list:
+        if len(word) >=4 and len(word) <= 6:
             easy_words.append(word)
+
     return easy_words
 
 
@@ -17,12 +21,13 @@ def medium_words(word_list):
     Returns a filtered version of the word list with words only containing
     6-8 characters.
     """
-    # TODO
     medium_words = []
-    for word in words:
+    for word in word_list:
         if len(word) >= 6 and len(word) <=8:
             medium_words.append(word)
+
     return medium_words
+
 
 
 def hard_words(word_list):
@@ -30,11 +35,11 @@ def hard_words(word_list):
     Returns a filtered version of the word list with words only containing
     8+ characters.
     """
-    # TODO
     hard_words = []
-    for word in words:
+    for word in word_list:
         if len(word) >=8:
             hard_words.append(word)
+
     return hard_words
 
 
@@ -42,8 +47,8 @@ def random_word(word_list):
     """
     Returns a random word from the word list.
     """
-    # TODO
-    pass
+    mys_word = random.choice(word_list)
+    return mys_word
 
 
 def display_word(word, guesses):
@@ -57,8 +62,14 @@ def display_word(word, guesses):
     For example, if the word is BOMBARD and the letters guessed are a, b,
     and d, this function should return 'B _ _ B A _ D'.
     """
-    # TODO
-    pass
+    display = []
+    for guess in word:
+        if guess in guesses:
+            display.append(guess)
+        else:
+            display.append('_')
+    display = ' '.join(display).upper()
+    return display
 
 
 def is_word_complete(word, guesses):
@@ -66,8 +77,15 @@ def is_word_complete(word, guesses):
     Returns True if the list of guesses covers every letter in the word,
     otherwise returns False.
     """
-    # TODO
-    pass
+
+
+    for letter in word:
+        if letter not in guesses:
+            return False
+    return True
+
+
+
 
 
 def main():
@@ -84,9 +102,70 @@ def main():
     4. Finishing the game and displaying whether the user has won or lost
     5. Giving the user the option to play again
     """
-    # TODO
-    with open ('/usr/share/dict/words') as g:
-        words = g.read()
+    with open ('/usr/share/dict/words') as d:
+        all_words = d.read()
+    all_words = all_words.split()
+
+
+
+
+
+    difficulty = input( "Please select a difficulty or enter quit to quit. \n Enter easy, medium or hard: ")
+    if difficulty == 'easy':
+        correct_word = random_word(easy_words(all_words))
+    elif difficulty == 'medium':
+        correct_word = random_word(medium_words(all_words))
+    elif difficulty == 'hard':
+        correct_word = random_word(hard_words(all_words))
+    else:
+        exit()
+
+#  guessing
+
+    wrong = 8
+    guessed = []
+    print('The word has {} letters'.format(len(correct_word)))
+    while wrong > 0 and is_word_complete(correct_word, guessed) == False:
+        print(display_word(correct_word, guessed))
+        print('{} guesses remaining'.format(wrong))
+        print(guessed)
+        while True:
+            last_letter = input('Guess a letter: ').lower()
+            if last_letter in guessed:
+                print('Please guess a new letter.')
+                continue
+            elif len(last_letter) > 1:
+                print('Only enter a single letter.')
+                continue
+            elif last_letter in correct_word:
+                guessed.append(last_letter)
+                print('Correct.')
+                break
+            elif last_letter not in correct_word:
+                print('Wrong.')
+                wrong -= 1
+                guessed.append(last_letter)
+                break
+            else:
+                continue
+
+# result
+
+    if wrong <= 0:
+        x = input(('You ran out of guesses. The word was {}. \n  Enter yes to play again: '.format(correct_word)))
+        if x == 'yes':
+            return main()
+        else:
+            exit()
+    else:
+        x = input('You guessed the word. \n Enter yes to play again: ')
+        if x == 'yes':
+            return main()
+        else:
+            exit()
+
+
+
 
 
 if __name__ == '__main__':
