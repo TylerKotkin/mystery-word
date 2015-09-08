@@ -1,7 +1,8 @@
-# Mystery Word
-## Instructions
+# <div align="center"> The Mystery Word Game
 
-* To run the Mystery Word game type "python mystery_word.py" into your terminal.
+## <div align="center"> Instructions
+
+* To run The Mystery Word Game type "python mystery_word.py" into your terminal.
 * After starting the program the player will be asked to select a difficulty level. \n
    * The easy level will pick a random word with 4 to 6 letters.
    * The medium level will pick a random word with 6 to 8 letters.
