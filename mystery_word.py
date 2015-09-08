@@ -137,6 +137,9 @@ def main():
             elif len(last_letter) > 1:
                 print('Only enter a single letter.')
                 continue
+            elif last_letter.isalpha() != True:
+                print('You can only enter a letter.')
+                continue
             elif last_letter in correct_word:
                 guessed.append(last_letter)
                 print('Correct.')
