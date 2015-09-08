@@ -103,7 +103,7 @@ def main():
     5. Giving the user the option to play again
     """
     with open ('/usr/share/dict/words') as d:
-        all_words = d.read()
+        all_words = d.read().lower()
     all_words = all_words.split()
 
 
