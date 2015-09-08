@@ -110,15 +110,22 @@ def main():
 
 
 
-    difficulty = input( "Please select a difficulty or enter quit to quit. \n Enter easy, medium or hard: ")
+    difficulty = input( "Please select a difficulty level or enter quit to quit. \n Enter easy, medium or hard: ")
     if difficulty == 'easy':
         correct_word = random_word(easy_words(all_words))
+        print('You selected the easy level. \n Goodluck.')
     elif difficulty == 'medium':
         correct_word = random_word(medium_words(all_words))
+        print('You selected the medium level. \n Goodluck.')
     elif difficulty == 'hard':
         correct_word = random_word(hard_words(all_words))
-    else:
+        print('You selected the hard level. \n Goodluck.')
+    elif difficulty == 'quit':
+        print('Goodbye.')
         exit()
+    else:
+        print('That is not an accepted difficulty level.')
+        return main()
 
 #  guessing
 
