@@ -6,7 +6,7 @@ Mystery Word is a hangman style game in which the user must guess a randomly sel
 
 * Before running The Mystery Word Game, the user must first clone the mystery-word repo onto their computer. The user must have Python 3 installed in order to run the program.
 * To run The Mystery Word Game, the user must use a command-line program to navigate to the folder in which the mystery-word repo was saved and then type `python mystery_word.py` on the command-line.
-* After starting the program, the player will be asked to select a difficulty level. \n
+* After starting the program, the player will be asked to select a difficulty level.
    * The easy level will pick a random word with 4 to 6 letters.
    * The medium level will pick a random word with 6 to 8 letters.
    * The hard level will pick a random word with 8 or more letters.
